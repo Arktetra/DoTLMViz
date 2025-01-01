@@ -2,11 +2,13 @@
 name = "DoTLMViz"
 version = "0.1"
 dependencies = [
+    "einops",
     "jaxtyping",
     "mkdocs",
     "mkdocstrings-python",
     "mkdocs-material",
     "pre-commit",
+    "pytest",
     "ruff"
 ]
 
@@ -20,4 +22,5 @@ packages = ["DoTLMViz"]
 line-length = 120
 
 [tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
 ignore = ["E722", "E731", "F722"]
