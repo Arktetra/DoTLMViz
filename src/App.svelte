@@ -5,6 +5,8 @@
 
   import * as THREE from 'three';
   import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+  import Overlay from './lib/Overlay.svelte';
+  import ButtonOverlay from './lib/ButtonOverlay.svelte';
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -13,7 +15,7 @@
   const controls = new OrbitControls( camera, renderer.domElement );
   renderer.setSize( window.innerWidth, window.innerHeight );
   renderer.setAnimationLoop( animate );
-  document.body.appendChild( renderer.domElement );
+  // document.body.appendChild( renderer.domElement );
 
   const geometry = new THREE.BoxGeometry( 1, 1, 1 );
   const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
@@ -51,5 +53,15 @@
   <p class="text-sm font-light font-sans uppercase tracking-widest border border-theme p-2 px-4 rounded-md hover:bg-theme hover:text-theme-w transition-all duration-300 cursor-pointer">This is tailwind test for style</p>
   <Counter />
   <Barchart />
+  <!-- <Overlay>
+    Hello
+  </Overlay> -->
+  <ButtonOverlay label={"Click me to overlay"}>
+    This is testing with slot
+  </ButtonOverlay>
+  <ButtonOverlay label={"Click me to overlay 33"}>
+    <p>Now lets go with more energy as i am able to surpass the proxy</p>
+  </ButtonOverlay>
+
   <span>Scoll to bottom to see three.js in action</span>
 </main>
