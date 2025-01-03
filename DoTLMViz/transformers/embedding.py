@@ -40,7 +40,7 @@ class Unembedding(nn.Module):
         super().__init__()
         self.config = config
         self.W_U = nn.Parameter(torch.empty((config.d_model, config.d_vocab)))
-        self.b_U = nn.Parameter(torch.zeros((config.d_vocab), required_grad=False))
+        self.b_U = nn.Parameter(torch.zeros((config.d_vocab), requires_grad=False))
         nn.init.normal_(self.W_U, std=config.init_range)
 
     def forward(
