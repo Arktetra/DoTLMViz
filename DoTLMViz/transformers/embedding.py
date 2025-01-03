@@ -26,7 +26,7 @@ class PosEmbedding(nn.Module):
         super().__init__()
         self.config = config
         self.W_pos = nn.Parameter(torch.empty((config.n_ctx, config.d_model)))
-        nn.init_normal_(self.W_pos, std=config.init_range)
+        nn.init.normal_(self.W_pos, std=config.init_range)
 
     def forward(self, tokens: Int[Tensor, "batch seq_len"]) -> Float[Tensor, "batch seq_len d_model"]:
         """Forward pass for Position Embedding Layer."""
