@@ -1,4 +1,34 @@
 export const content: Record<string, string> = {
+  "gpt2-small": `
+  <section id="gpt2-small">
+	<p><strong>GPT‑2 Small</strong> is a 124-million parameter decoder‑only transformer model developed by OpenAI. It is widely used for text generation, language understanding, and as a base model for further research and fine‑tuning.</p>
+	<h2>Model Architecture</h2>
+	<ul>
+	  <li><strong>Number of Layers:</strong> 12 transformer blocks</li>
+	  <li><strong>Hidden Size:</strong> 768</li>
+	  <li><strong>Attention Heads:</strong> 12 (each head has a dimension of 64, since 768/12 = 64)</li>
+	  <li><strong>Feed‑Forward Network Dimension:</strong> 3072 (typically 4 times the hidden size)</li>
+	  <li><strong>Vocabulary Size:</strong> 50,257 tokens</li>
+	  <li><strong>Context Window:</strong> Up to 1024 tokens</li>
+	</ul>
+	<h2>Core Components</h2>
+	<p>The GPT‑2 Small model is built exclusively using decoder layers of the transformer architecture. Its key components include:</p>
+	<ul>
+	  <li><strong>Token Embedding:</strong> Converts discrete tokens into continuous vectors using a learned lookup table.</li>
+	  <li><strong>Positional Embedding:</strong> Adds information about token positions to the token embeddings, allowing the model to understand word order.</li>
+	  <li><strong>Self‑Attention Mechanism:</strong> Uses multiple attention heads to capture relationships between tokens. The attention scores are computed using the formula:</li>
+	</ul>
+	<p style="text-align:center; font-style:italic;">Attention = softmax((Q · K<sup>T</sup>) / √(d<sub>head</sub>))</p>
+	<ul>
+	  <li><strong>Layer Normalization (LayerNorm):</strong> Applied before or after each sub‑layer to stabilize training by normalizing inputs.</li>
+	  <li><strong>Multi‑Layer Perceptron (MLP):</strong> A feed‑forward network that processes each token independently, typically expanding and then reducing the dimensionality.</li>
+	  <li><strong>Unembedding:</strong> Projects the final hidden states back into the vocabulary space to produce logits for next-token prediction.</li>
+	</ul>
+	<h2>Training & Usage</h2>
+	<p>GPT‑2 Small was trained on a large dataset (WebText) using a self‑supervised objective where the model predicts the next token in a sequence. Due to its moderate size and open availability, it has become a popular choice for educational purposes and rapid prototyping of text generation systems.</p>
+	<p>This project, DoTLMViz, leverages GPT‑2 Small to provide interactive visualizations of these internal components, allowing users to explore embeddings, attention patterns, layer norms, and more.</p>
+  </section>
+`,
 	'token-embedding': `<p><strong>Token Embedding:</strong> A token embedding is a learned mapping that converts discrete tokens (such as words, subwords, or characters) into continuous, high-dimensional vectors. In transformer models, each token is mapped via a lookup table (typically denoted as <em>W<sub>E</sub></em>) to its corresponding vector. These embeddings form the initial input layer, enabling the model to begin constructing contextual representations.</p>`,
 
 	'positional-embedding': `<p><strong>Positional Embedding:</strong> Positional embeddings inject sequence order information into the model. They map each token's position in the input sequence to a unique vector, which is then added to the token embeddings. This addition allows the transformer to distinguish between tokens based solely on their positions, ensuring that the sequential context is preserved.</p>`,
@@ -20,4 +50,3 @@ export const content: Record<string, string> = {
 	<li><strong>Top-k:</strong> Restricts the sampling to the top <em>k</em> tokens with the highest probabilities (for instance, k=50), further controlling the randomness by focusing on the most promising candidates.</li>
   </ul>`
   };
-
