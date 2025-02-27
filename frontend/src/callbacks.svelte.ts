@@ -1,6 +1,7 @@
 import {
 	getAct,
 	getDist,
+	getEmbed,
 	getMLPOuts,
 	getNextToken,
 	getProbDensity,
@@ -48,7 +49,7 @@ export const inputCallback = async (v: string) => {
  */
 export const embedCallback = async () => {
 	await checkInputAndRunModel();
-	await getAct('embed', null, null);
+	await getEmbed('embed');
 	activeComponent.name = 'Token Embedding';
 };
 
@@ -58,7 +59,7 @@ export const embedCallback = async () => {
  */
 export const posEmbedCallback = async () => {
 	await checkInputAndRunModel();
-	await getAct('pos_embed', null, null);
+	await getEmbed('pos_embed');
 	activeComponent.name = 'Positional Embedding';
 };
 
