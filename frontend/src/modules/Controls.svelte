@@ -1,0 +1,100 @@
+<script lang="ts">
+    import { activeComponent, global_state } from "../state.svelte";
+	import {
+		kSliderCallback,
+		MLPPostCallback,
+		MLPPreCallback,
+		pSliderCallback,
+		temperatureSliderCallback
+	} from '../callbacks.svelte';
+	import ThemeInputSlider from '../components/ThemeInputSlider.svelte';
+	import ThemeToggle from '../components/ThemeToggle.svelte';
+	import DropDown from '../components/DropDown.svelte';
+
+    import { QuestionCircleSolid } from "flowbite-svelte-icons";
+
+	// here true represent the top p and false mean k
+	let topPorK = $state(false);
+	const samplingMethod = ["PCA", "t-SNE"]
+
+    // this function will be called by dropdown change with the option name as param
+    const onSampChange = (name: string) => {
+        // invoke sampling backend method here..
+        console.log(name)
+    }
+</script>
+
+{#if activeComponent.name === 'MLP (in) Pre-activation' || activeComponent.name === 'GELU Activation'}
+    <div class="flex flex-row items-center justify-evenly space-x-4">
+        <label for="neuron">Neuron:</label>
+        <input
+            id="neuron"
+            name="neuron"
+            type="number"
+            min="0"
+            max="3072"
+            bind:value={global_state.neuron}
+            onchange={() => {
+                if (activeComponent.name === "MLP (in) Pre-activation") {
+                    return MLPPreCallback();
+                } else {
+                    return MLPPostCallback();
+                }
+            }}
+            class="rounded-md border border-theme px-1 text-lg text-theme outline-none"
+        />
+        <div class="flex flex-col">
+            <span class="text-ti">3072</span>
+            <span class="text-ti">0</span>
+        </div>
+    </div>
+{:else if activeComponent.name === 'Output Distribution'}
+    <div class="relative w-full rounded-md bg-theme-g p-2 shadow-inner shadow-theme-g-alt">
+        <a
+            target="_blank"
+            href="/read/control-parameter"
+            title="Control Parameter"
+            class="absolute end-1 top-1 text-theme"
+        >
+            <QuestionCircleSolid size={'sm'} />
+        </a>
+        <span
+            class="mb-4 flex flex-row justify-around text-center text-sm font-extrabold uppercase text-theme underline"
+        >
+            Control Parameters
+            <ThemeToggle
+                bind:state={topPorK}
+                style="z-50 text-ti-s"
+                leftlabel="Top k"
+                rightlabel="Top p"
+            />
+        </span>
+        <ThemeInputSlider
+            label={'Temperature'}
+            min={-2}
+            max={2}
+            step={0.1}
+            changeEventCb={temperatureSliderCallback}
+        />
+        <hr class="my-1 border border-theme-w" />
+        {#if topPorK}
+            <ThemeInputSlider
+                label={'Top K'}
+                min={1}
+                max={10}
+                step={1}
+                changeEventCb={kSliderCallback}
+            />
+        {:else}
+            <ThemeInputSlider
+                label={'Top P'}
+                min={0}
+                max={1}
+                step={0.05}
+                changeEventCb={pSliderCallback}
+            />
+        {/if}
+    </div>
+{:else if activeComponent.name === 'Token Embedding' || activeComponent.name === 'Positional Embedding'}
+    <DropDown label={"Sampling Methods"} options={samplingMethod} onChangeCb={onSampChange} />
+{/if}
