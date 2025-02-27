@@ -35,7 +35,7 @@
 		<span>...</span>
 	{/if}
 	{#if popUpEnable}
-		<Popup onCloseCb={() => setPopUpState(false)}>
+		<Popup onCloseCb={() => setPopUpState(false)} style="bg-theme">
 			{#if children}
 				{@render children()}
 			{/if}

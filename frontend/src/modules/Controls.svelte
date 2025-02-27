@@ -116,7 +116,12 @@
     </div>
 {:else if activeComponent.name === 'Token Embedding' || activeComponent.name === 'Positional Embedding'}
     <div class="w-full space-y-4 p-2">
-        <DropDown label={"Sampling Methods"} options={dimredMethod} onChangeCb={onMethodChange} />
+        <DropDown
+            value={dimred.method}
+            label={"Sampling Methods"}
+            options={dimredMethod}
+            onChangeCb={onMethodChange}
+        />
         {#if dimred.method === "t-SNE"}
             <!-- please descibe the range and the callback as per appropriate -->
             <ThemeInputSlider
