@@ -87,7 +87,7 @@
 {:else}
 	<DottedBlockBase
 		label="Transformer Blocks"
-		inStyle="!h-[80%] w-[40%] justify-evenly shadow-lg z-10 relative bg-white rounded-xl"
+		inStyle="!h-[80%] w-[40%] justify-evenly shadow-lg z-0 relative bg-white rounded-xl"
 	>
 		<span class="text-3xl font-extrabold">x12</span>
 		<div
