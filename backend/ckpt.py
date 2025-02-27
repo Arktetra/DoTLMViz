@@ -1,7 +1,5 @@
 from flask import Blueprint, current_app, request, jsonify
 
-from . import utils
-
 from DoTLMViz import KernelDensityEstimator
 
 bp = Blueprint("ckpt", __name__, url_prefix="/ckpt")
@@ -31,9 +29,6 @@ def get_act():
             block = request.json["block"]
 
             act = current_app.ckpts.get(act_name, layer_name, block)
-
-            if act_name == "embed" or act_name == "pos_embed":
-                return utils.perform_pca(act)
 
             return act.squeeze().tolist()
     except Exception as e:
