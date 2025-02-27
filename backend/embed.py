@@ -18,13 +18,19 @@ def get_reduced_embed():
 
         assert method in ["PCA", "t-SNE"], f"Unknown method name '{method}'."
 
+        if current_app.ckpts is None:
+            return []
+
         embeddings = current_app.ckpts.get(embed_name, None, None)
 
-        if method == "PCA":
-            return utils.perform_pca(embeddings)
-        elif method == "t-SNE":
-            perplexity = request.json["perplexity"]
-            return utils.perform_tsne(embeddings, perplexity)
+        if embeddings.shape[1] >= 2:
+            if method == "PCA":
+                return utils.perform_pca(embeddings)
+            elif method == "t-SNE":
+                perplexity = request.json["perplexity"]
+                return utils.perform_tsne(embeddings, perplexity)
+        else:
+            return []
 
     except Exception as e:
         print("Error: ", str(e))
