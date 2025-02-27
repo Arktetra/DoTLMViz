@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte';
 	import { loadModel } from './fetch.svelte';
 	import { InitEventMap } from '../eventstate.svelte';
-	import { active_model, global_state, input } from '../state.svelte';
+	import { active_model, global_state } from '../state.svelte';
 	import ExpandableDottedBlock from '../components/ExpandableDottedBlock.svelte';
 	import Navbar from '../modules/Navbar.svelte';
 	import Message from '../components/Message.svelte';
@@ -28,7 +28,7 @@
 {#if showRead}
 	<Message
 		type="info"
-		ostyle="bg-theme bottom-10 right-[50%] translate-x-[50%] !text-sm"
+		ostyle="bg-theme bottom-10 right-[50%] min-w-[60%] z-30 flex flex-row justify-center translate-x-[50%] !text-sm"
 		message="Recomendation: Please visit reading section first to understand the basic theories"
 	>
 		<a href={'/read'} class="ml-5 hover:underline">Visit Now</a>
