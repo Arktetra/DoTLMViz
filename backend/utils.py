@@ -35,7 +35,13 @@ def tokenize_and_saveable(text) -> bool:
         return False
     else:
         token_ids = current_app.tokenizer(text, return_tensors="pt")["input_ids"]
-        raw_tokens = current_app.tokenizer.convert_ids_to_tokens(token_ids.squeeze())
+
+        if token_ids.shape[1] > 1:
+            token_ids_for_conversion = token_ids.squeeze()
+        else:
+            token_ids_for_conversion = token_ids
+
+        raw_tokens = current_app.tokenizer.convert_ids_to_tokens(token_ids_for_conversion)
         current_app.last_input = {"text": text, "token_ids": token_ids, "raw_tokens": raw_tokens}
         return True
 
@@ -59,5 +65,6 @@ def perform_tsne(data: torch.Tensor, perplexity: float = 5.0):
     """
     A utility function for performing t-SNE on the data.
     """
+    print(perplexity)
     model = TSNE(n_components=2, perplexity=perplexity, random_state=41)
     return model.fit_transform(data.squeeze().cpu().detach()).tolist()
