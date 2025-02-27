@@ -55,7 +55,7 @@ def perform_pca(data: torch.Tensor):
     return pca(data).squeeze().tolist()
 
 
-def perform_tsne(data: torch.Tensor, perplexity=5):
+def perform_tsne(data: torch.Tensor, perplexity: float = 5.0):
     """
     A utility function for performing t-SNE on the data.
     """
