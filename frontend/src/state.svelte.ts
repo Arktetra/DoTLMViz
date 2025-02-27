@@ -8,7 +8,7 @@ export const data = $state({
 
 export const dimred = $state({
 	method: 'PCA',
-	perplexity: 2
+	perplexity: 1
 });
 
 // All the model information name, embed_size, ...
