@@ -1,9 +1,11 @@
 <script lang="ts">
-    import { activeComponent, global_state } from "../state.svelte";
+    import { activeComponent, dimred, global_state } from "../state.svelte";
 	import {
+	embedCallback,
 		kSliderCallback,
 		MLPPostCallback,
 		MLPPreCallback,
+		posEmbedCallback,
 		pSliderCallback,
 		temperatureSliderCallback
 	} from '../callbacks.svelte';
@@ -15,12 +17,19 @@
 
 	// here true represent the top p and false mean k
 	let topPorK = $state(false);
-	const samplingMethod = ["PCA", "t-SNE"]
+	const dimredMethod = ["PCA", "t-SNE"]
 
     // this function will be called by dropdown change with the option name as param
-    const onSampChange = (name: string) => {
+    const onMethodChange = (name: string) => {
         // invoke sampling backend method here..
-        console.log(name)
+        // console.log(name)
+        dimred.method = name;
+
+        if (activeComponent.name === "Token Embedding") {
+            embedCallback();
+        } else {
+            posEmbedCallback();
+        }
     }
 </script>
 
@@ -96,5 +105,5 @@
         {/if}
     </div>
 {:else if activeComponent.name === 'Token Embedding' || activeComponent.name === 'Positional Embedding'}
-    <DropDown label={"Sampling Methods"} options={samplingMethod} onChangeCb={onSampChange} />
+    <DropDown label={"Sampling Methods"} options={dimredMethod} onChangeCb={onMethodChange} />
 {/if}
