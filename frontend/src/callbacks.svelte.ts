@@ -49,7 +49,11 @@ export const inputCallback = async (v: string) => {
  */
 export const embedCallback = async () => {
 	await checkInputAndRunModel();
-	await getEmbed('embed');
+
+	if (global_state.tokens.length > 2) {
+		await getEmbed('embed');
+	}
+
 	activeComponent.name = 'Token Embedding';
 };
 
@@ -59,7 +63,11 @@ export const embedCallback = async () => {
  */
 export const posEmbedCallback = async () => {
 	await checkInputAndRunModel();
-	await getEmbed('pos_embed');
+
+	if (global_state.tokens.length > 2) {
+		await getEmbed('pos_embed');
+	}
+
 	activeComponent.name = 'Positional Embedding';
 };
 
@@ -168,13 +176,14 @@ export const temperatureSliderCallback = async (v: number) => {
 
 export const kSliderCallback = async (v: number) => {
 	params.top_k = +v;
-	console.log(v);
+	params.top_p = 0;
 
 	await outputCallback();
 };
 
 export const pSliderCallback = async (v: number) => {
 	params.top_p = +v;
+	params.top_k = 0;
 
 	await outputCallback();
 };
