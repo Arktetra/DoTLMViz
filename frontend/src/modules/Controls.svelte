@@ -31,6 +31,12 @@
             posEmbedCallback();
         }
     }
+
+    // function invoked by slider on change with its current value passed as params
+    const onPerplexityChange = (num: number) => {
+        // invoke other method for perplexity value change        
+        console.log(num)
+    }
 </script>
 
 {#if activeComponent.name === 'MLP (in) Pre-activation' || activeComponent.name === 'GELU Activation'}
@@ -105,5 +111,17 @@
         {/if}
     </div>
 {:else if activeComponent.name === 'Token Embedding' || activeComponent.name === 'Positional Embedding'}
-    <DropDown label={"Sampling Methods"} options={dimredMethod} onChangeCb={onMethodChange} />
+    <div class="w-full space-y-4 p-2">
+        <DropDown label={"Sampling Methods"} options={dimredMethod} onChangeCb={onMethodChange} />
+        {#if dimred.method === "t-SNE"}
+            <!-- please descibe the range and the callback as per appropriate -->
+            <ThemeInputSlider 
+                min={0}
+                max={1}
+                step={0.05}
+                changeEventCb={onPerplexityChange}
+                label="Perplexity" 
+            />
+        {/if}
+    </div>
 {/if}
