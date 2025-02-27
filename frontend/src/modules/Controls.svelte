@@ -19,12 +19,7 @@
 	let topPorK = $state(false);
 	const dimredMethod = ["PCA", "t-SNE"]
 
-    // this function will be called by dropdown change with the option name as param
-    const onMethodChange = (name: string) => {
-        // invoke sampling backend method here..
-        // console.log(name)
-        dimred.method = name;
-
+    function condEmbedCallback() {
         if (activeComponent.name === "Token Embedding") {
             embedCallback();
         } else {
@@ -32,10 +27,19 @@
         }
     }
 
+    // this function will be called by dropdown change with the option name as param
+    const onMethodChange = (name: string) => {
+        // invoke sampling backend method here..
+        dimred.method = name;
+
+        condEmbedCallback();
+    }
+
     // function invoked by slider on change with its current value passed as params
     const onPerplexityChange = (num: number) => {
-        // invoke other method for perplexity value change        
-        console.log(num)
+        // invoke other method for perplexity value change
+        dimred.perplexity = +num;
+        condEmbedCallback();
     }
 </script>
 
@@ -115,12 +119,12 @@
         <DropDown label={"Sampling Methods"} options={dimredMethod} onChangeCb={onMethodChange} />
         {#if dimred.method === "t-SNE"}
             <!-- please descibe the range and the callback as per appropriate -->
-            <ThemeInputSlider 
-                min={0}
-                max={1}
+            <ThemeInputSlider
+                min={1}
+                max={global_state.embed_output.length - 1}
                 step={0.05}
                 changeEventCb={onPerplexityChange}
-                label="Perplexity" 
+                label="Perplexity"
             />
         {/if}
     </div>
