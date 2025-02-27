@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { data, active_model, global_state, params } from '../state.svelte';
+import { data, active_model, global_state, params, dimred } from '../state.svelte';
 
 type ICallback = (d: any) => void;
 
@@ -67,15 +67,7 @@ export const getAct = async (act_name: string, layer_name: string | null, block:
 	const data = await _Axios.Post('/ckpt/act', { act_name, layer_name, block });
 	console.log(data);
 
-	if (act_name === 'embed' || act_name === 'pos_embed') {
-		let embedOutput: ScatterPlotData = [];
-
-		for (let i = 0; i < data.length; i++) {
-			embedOutput.push({ x: data[i][0], y: data[i][1], token: global_state.tokens[i] });
-		}
-
-		global_state.embed_output = embedOutput;
-	} else if (act_name === 'pattern') {
+	if (act_name === 'pattern') {
 		let attnPatterns: HeatMapData[] = [];
 
 		for (let i = 0; i < data.length; i++) {
@@ -101,6 +93,26 @@ export const getAct = async (act_name: string, layer_name: string | null, block:
 		global_state.data = data;
 	}
 };
+
+export const getEmbed = async (embed_name: string) => {
+	const data = await _Axios.Post(
+		"/embed/reduced",
+		{
+			embed_name,
+			method: dimred.method,
+			perplexity: dimred.perplexity
+		}
+	);
+
+
+	let embedOutput: ScatterPlotData = [];
+
+	for (let i = 0; i < data.length; i++) {
+		embedOutput.push({ x: data[i][0], y: data[i][1], token: global_state.tokens[i] });
+	}
+
+	global_state.embed_output = embedOutput;
+}
 
 export const getProbDensity = async (
 	act_name: string | null,
