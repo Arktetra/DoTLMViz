@@ -7,7 +7,7 @@ export default defineConfig({
 		proxy: {
 			'/model/': 'http://127.0.0.1:5000',
 			'/ckpt/': 'http://127.0.0.1:5000',
-			'/dimred/': 'http://127.0.0.1:5000'
+			'/embed/': 'http://127.0.0.1:5000',
 		}
 	}
 });

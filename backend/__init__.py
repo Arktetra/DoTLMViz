@@ -27,7 +27,6 @@ def create_app(test_config=None):
     app.logits = None
     app.ckpts = None
 
-
     if test_config is None:
         # Load the instance config (if it exists), when not testing
         app.config.from_pyfile("config.py", silent=True)
@@ -49,8 +48,8 @@ def create_app(test_config=None):
 
     app.register_blueprint(ckpt.bp)
 
-    from . import dimred
+    from . import embed
 
-    app.register_blueprint(dimred.bp)
+    app.register_blueprint(embed.bp)
 
     return app
