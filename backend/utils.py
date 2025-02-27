@@ -1,4 +1,5 @@
 from flask import current_app
+from sklearn.manifold import TSNE
 from transformers import GPT2Tokenizer
 from DoTLMViz import CkptedTransformer
 from DoTLMViz.decomposition import PCA
@@ -11,19 +12,18 @@ def load_model():
     An utility function for loading the models. The model to be loaded by the model_name
     in the current_app instance.
     """
-    if current_app.model_name == "gpt2-small" and current_app.is_model_loaded == False:
+    if current_app.model_name == "gpt2-small" and not current_app.is_model_loaded:
         current_app.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
         current_app.model = CkptedTransformer.from_pretrained("gpt2-small")
         current_app.device = (
-            "cuda" if torch.cuda.is_available() 
-            else "mps" if torch.backends.mps.is_available() 
-            else "cpu"
+            "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
         )
         print(f"{current_app.model_name} model loaded successfully!!!")
-    elif current_app.is_model_loaded == True:
+    elif current_app.is_model_loaded:
         print(f"{current_app.model_name} model already loaded")
 
     current_app.is_model_loaded = True
+
 
 def tokenize_and_saveable(text) -> bool:
     """
@@ -39,6 +39,7 @@ def tokenize_and_saveable(text) -> bool:
         current_app.last_input = {"text": text, "token_ids": token_ids, "raw_tokens": raw_tokens}
         return True
 
+
 # this is temporary helper function to load model if not
 def if_not_load(n):
     current_app.model_name = n
@@ -52,3 +53,11 @@ def perform_pca(data: torch.Tensor):
     pca = PCA(n_components=2)
     pca.fit(data.squeeze())
     return pca(data).squeeze().tolist()
+
+
+def perform_tsne(data: torch.Tensor, perplexity=5):
+    """
+    A utility function for performing t-SNE on the data.
+    """
+    model = TSNE(n_components=2, perplexity=perplexity, random_state=41)
+    return model.fit_transform(data.squeeze().cpu().detach()).tolist()
