@@ -6,6 +6,11 @@ export const data = $state({
 	tokenProbMappings: []
 });
 
+export const dimred = $state({
+	method: 'PCA',
+	perplexity: 2
+});
+
 // All the model information name, embed_size, ...
 export const active_model = $state({
 	model_name: 'gpt2-small'
