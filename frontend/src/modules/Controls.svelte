@@ -122,7 +122,7 @@
             options={dimredMethod}
             onChangeCb={onMethodChange}
         />
-        {#if dimred.method === "t-SNE"}
+        {#if dimred.method === "t-SNE" && global_state.embed_output.length > 2}
             <!-- please descibe the range and the callback as per appropriate -->
             <ThemeInputSlider
                 min={1}
