@@ -19,15 +19,18 @@
         margin-left: var(--size-4);
         margin-right: var(--size-4);
         margin-top: var(--size-1);
+        margin-bottom: var(--size-1);
         text-align: justify;
     }
 
-    :is(ul, ol) {
+    :is(ol) {
         padding-left: var(--size-7);
-        /* padding: 0px; */
-        /* display: list-item; */
         list-style: decimal;
-        /* list-style-position: inside; */
+    }
+
+    :is(ul) {
+        padding-left: var(--size-7);
+        list-style-type: square;
     }
 
     :is(ul, ol) li {
