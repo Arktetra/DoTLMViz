@@ -1,5 +1,5 @@
 <script lang="ts">
-	const { children } = $props();
+	const { children, data } = $props();
 	import { content } from '$lib/content';
 	import { ArrowRightOutline, WandMagicSparklesSolid } from 'flowbite-svelte-icons';
 	import { fly } from 'svelte/transition';
@@ -35,17 +35,18 @@
 		transition:fly={{ duration: 300 }}
 		class="fixed left-0 top-0 flex h-full w-[17rem] flex-col items-center justify-center border-r bg-theme text-left shadow-xl sm:w-[20rem]"
 	>
-		{#each getTitle() as c, ind}
+		{#each data.posts as post, ind}
 			<a
-				href="/read/{c}"
+				href="readings/{post.slug}"
 				onclick={() => (activeInd = ind)}
 				class="w-full p-4 text-theme-w hover:bg-theme-alt hover:px-6 {activeInd == ind
 					? 'border-l-8 border-theme-w font-extrabold'
 					: ''} capitalize transition-all duration-300"
 			>
-				{ind + 1 + '. ' + c}
+				{post.title}
 			</a>
 		{/each}
+		<!-- {console.log(data)} -->
 		<a
 			href="/"
 			class="w-full p-4 capitalize text-theme-w transition-all duration-300 hover:bg-theme-alt hover:px-6"
