@@ -3,3 +3,36 @@
 @import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Smooch+Sans:wght@100..900&display=swap');
+
+:root {
+    --size-1: 1rem;
+    --size-2: 2rem;
+    --size-3: 3rem;
+    --size-4: 4rem;
+    --size-5: 5rem;
+    --size-6: 6rem;
+    --size-7: 7rem;
+}
+
+.prose {
+    p {
+        margin-left: var(--size-4);
+        margin-right: var(--size-4);
+        margin-top: var(--size-1);
+        text-align: justify;
+    }
+
+    :is(ul, ol) {
+        padding-left: var(--size-7);
+        /* padding: 0px; */
+        /* display: list-item; */
+        list-style: decimal;
+        /* list-style-position: inside; */
+    }
+
+    :is(ul, ol) li {
+        p {
+            margin-left: 0rem;
+        }
+    }
+}

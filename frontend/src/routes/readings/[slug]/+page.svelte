@@ -8,7 +8,7 @@
             {data.meta.title}
         </h1>
     </hgroup>
-    <div class="my-5 px-10">
+    <div class="prose">
         <data.content />
     </div>
 </article>
