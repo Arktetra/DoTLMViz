@@ -37,7 +37,7 @@
 	>
 		{#each data.posts as post, ind}
 			<a
-				href="readings/{post.slug}"
+				href="/readings/{post.slug}"
 				onclick={() => (activeInd = ind)}
 				class="w-full p-4 text-theme-w hover:bg-theme-alt hover:px-6 {activeInd == ind
 					? 'border-l-8 border-theme-w font-extrabold'
