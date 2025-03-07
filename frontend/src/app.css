@@ -12,9 +12,26 @@
     --size-5: 5rem;
     --size-6: 6rem;
     --size-7: 7rem;
+
+    /* Font Sizes */
+    --font-size-1: 18px;
+    --font-size-2: 20px;
+    --font-size-3: 22px;
+    --font-size-4: 24px;
+    --font-size-5: 26px;
+    --font-size-6: 28px;
 }
 
 .prose {
+    font-family: 'Times New Roman';
+
+    :is(h1, h2, h3, h4, h5, h6) {
+        margin-left: var(--size-4);
+        margin-top: var(--size-2);
+        font-size: var(--font-size-5);
+        font-weight: bold;
+    }
+
     p {
         margin-left: var(--size-4);
         margin-right: var(--size-4);
@@ -38,4 +55,11 @@
             margin-left: 0rem;
         }
     }
+
+    :is(img) {
+        justify-self: center;
+        margin: var(--size-2);
+    }
+
+    .katex { font-size: 1em !important; }
 }
