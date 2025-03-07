@@ -7,7 +7,7 @@
 		step = 0.1,
 		label = '',
 		changeEventCb = null,
-		inpStyle = ''
+		inpStyle = '',
 	} = $props();
 
 	let inpVal: number = $state(0);
@@ -19,7 +19,7 @@
 
 	const MAX_CHAR_SIZE = 6;
 
-	onMount(() => {
+	$effect(() => {
 		inpVal = step % 1 === 0 ? Math.floor((max - min) / 2 + min) : (max - min) / 2 + min;
 	});
 </script>
@@ -34,11 +34,11 @@
 		<span class="absolute -bottom-3 -start-1 text-ti-s font-bold">{min}</span>
 		<input
 			type="range"
-			value={inpVal}
+			bind:value={inpVal}
 			{min}
 			{max}
 			{step}
-			oninput={(e: any) => updateInpVal(e.target.value)}
+			onchange={(e: any) => updateInpVal(e.target.value)}
 			class="h-[6px] w-full cursor-pointer accent-theme {inpStyle}"
 		/>
 		<span class="absolute -bottom-3 -end-1 text-ti-s font-bold">{max}</span>
