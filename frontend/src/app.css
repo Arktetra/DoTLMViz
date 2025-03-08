@@ -20,13 +20,21 @@
     --font-size-4: 24px;
     --font-size-5: 26px;
     --font-size-6: 28px;
+
+    /* Colors */
+    --theme: #665191;
 }
 
 .prose {
     font-family: 'Times New Roman';
 
     :is(a) {
-        color: blue;
+        color: var(--theme);
+    }
+
+    a:hover {
+        text-decoration: underline;
+        transition: width 1s;
     }
 
     :is(h1, h2, h3, h4, h5, h6) {
