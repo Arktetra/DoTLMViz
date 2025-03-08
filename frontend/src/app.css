@@ -25,6 +25,10 @@
 .prose {
     font-family: 'Times New Roman';
 
+    :is(a) {
+        color: blue;
+    }
+
     :is(h1, h2, h3, h4, h5, h6) {
         margin-left: var(--size-4);
         margin-top: var(--size-2);
@@ -62,4 +66,6 @@
     }
 
     .katex { font-size: 1em !important; }
+
+    padding-bottom: var(--size-7);
 }
