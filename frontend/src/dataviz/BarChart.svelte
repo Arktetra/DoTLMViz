@@ -2,8 +2,9 @@
 	import { scaleLinear } from 'd3-scale';
 	import { onMount } from 'svelte';
 
-	let { tokens } = $props<{
+	let { tokens, selected_token } = $props<{
 		tokens: { name: string; prob: number }[];
+		selected_token: string
 	}>();
 
 	let svg;
@@ -55,6 +56,10 @@
 					height={barHeight * 0.9}
 					rx=2
 					ry=2
+					style="
+						stroke-width: {token.name === selected_token ? "1.5" : "0"};
+						stroke: #665191;
+					"
 				/>
 
 				<text x={xScale(token.prob) + 2} y={yScale(tokens.length - i) + barHeight / 1.5}>

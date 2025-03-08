@@ -28,7 +28,7 @@
 				{#if input.text === ''}
 					Enter Something.
 				{:else if activeComponent.name === 'Generate' || activeComponent.name === 'Output Distribution'}
-					<BarChart tokens={data.tokenProbMappings} />
+					<BarChart tokens={data.tokenProbMappings} selected_token={global_state.next_token} />
 				{:else if activeComponent.name === 'Token Embedding' || activeComponent.name === 'Positional Embedding'}
 					<ScatterChart data={global_state.embed_output} />
 				{:else if activeComponent.name === 'Attention Pattern'}
