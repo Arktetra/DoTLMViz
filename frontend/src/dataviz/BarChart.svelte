@@ -7,12 +7,8 @@
 		selected_token: string
 	}>();
 
-	let svg;
-
 	let width = $state(500);
 	let height = $state(266);
-
-	let bboxWidth = 10;
 
 	let xTicks = [0, 0.25, 0.5, 0.75, 1.0];
 	let maxLength = $derived(Math.max(...tokens.map((token: {name: string, prob: number}) => token.name.length)));
