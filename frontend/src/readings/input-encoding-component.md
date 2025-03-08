@@ -2,7 +2,7 @@
 title: Input Encoding Component
 description: An explanation of token embedding.
 published: true
-order: 1
+order: 2
 ---
 
 The input encoding component converts a sequence of $N$ tokens into a matrix $X$ of shape $[N \times d]$, where $d$ is the dimension of the embedding vectors. The matrix $X$ has an embedding for each word in the context.
