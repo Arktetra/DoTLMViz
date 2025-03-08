@@ -2,7 +2,7 @@
 title: Transformer Blocks
 description: An explanation of transformer blocks.
 published: true
-order: 2
+order: 3
 ---
 
 In a transformer, layer by layer, richer and richer contextualized representations of the meanings of input tokens are built using the attention mechanism. At the highest transformer blocks, the residual stream is usually representing the following token.
