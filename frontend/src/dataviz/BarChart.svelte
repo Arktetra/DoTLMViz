@@ -11,8 +11,11 @@
 	let width = $state(500);
 	let height = $state(266);
 
+	let bboxWidth = 10;
+
 	let xTicks = [0, 0.25, 0.5, 0.75, 1.0];
-	const padding = { top: 20, right: 15, bottom: 20, left: 75 };
+	let maxLength = $derived(Math.max(...tokens.map((token: {name: string, prob: number}) => token.name.length)));
+	const padding = $derived({ top: 20, right: 15, bottom: 20, left: maxLength * 6 + 10 });
 
 	// probabilities along x-axis
 	let xScale = $derived(
@@ -42,6 +45,7 @@
 
 <div class="chart" bind:clientWidth={width}>
 	<svg {width} height="100%">
+		{#if tokens.length !== 0}
 		<g class="bars">
 			{#each tokens as token, i}
 				<rect
@@ -49,9 +53,11 @@
 					y={yScale(tokens.length - i)}
 					width={xScale(token.prob) - padding.left}
 					height={barHeight * 0.9}
+					rx=2
+					ry=2
 				/>
 
-				<text x={xScale(token.prob) + 2} y={yScale(tokens.length - i) + barHeight - 2}>
+				<text x={xScale(token.prob) + 2} y={yScale(tokens.length - i) + barHeight / 1.5}>
 					{(token.prob * 100).toFixed(3) + '%'}
 				</text>
 			{/each}
@@ -60,11 +66,8 @@
 		<g class="axis y-axis">
 			<!-- Labels along Y-axis -->
 			{#each tokens as token, i}
-				<g
-					class="tick"
-					transform="translate({padding.left - 5}, {yScale(tokens.length - i) + barHeight})"
-				>
-					<text x="0" y="0">
+				<g class="tick">
+					<text x={padding.left - 5} y={yScale(tokens.length - i) + barHeight / 1.5}>
 						{token.name}
 					</text>
 				</g>
@@ -92,6 +95,7 @@
 			<!-- The X-axis line -->
 			<line x1={xScale(0)} x2={xScale(1)} y1={yScale(0)} y2={yScale(0)} />
 		</g>
+		{/if}
 	</svg>
 </div>
 
@@ -102,16 +106,17 @@
 		/* width:  */
 	}
 	svg {
-		background-color: white;
+		color: #6a6af0;
+		background-color: aliceblue;
 	}
 
 	.y-axis line {
-		stroke: #003a70;
+		stroke: #6a6af0;;
 		stroke-width: 0.5;
 	}
 
 	.x-axis line {
-		stroke: #003a70;
+		stroke: #6a6af0;;
 		stroke-width: 0.5;
 	}
 
@@ -122,7 +127,7 @@
 	}
 
 	.bars rect {
-		fill: #003a70;
+		fill: #6a6af0;;
 		stroke: none;
 	}
 
@@ -140,7 +145,9 @@
 	.tick text {
 		fill: black;
 		text-anchor: end;
+		/* dominant-baseline: middle; */
 		font-size: 11px;
+		font-family: monospace;
 		color: white;
 	}
 </style>
