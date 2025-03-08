@@ -16,7 +16,7 @@
 	}
 
 	onMount(() => {
-		checkWindowWidth();
+		// checkWindowWidth();
 		window.addEventListener('resize', checkWindowWidth);
 		return window.removeEventListener('resize', checkWindowWidth);
 	});
