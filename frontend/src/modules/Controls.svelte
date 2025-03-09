@@ -71,7 +71,7 @@
     <div class="relative w-full rounded-md bg-theme-g p-2 shadow-inner shadow-theme-g-alt">
         <a
             target="_blank"
-            href="/read/control-parameter"
+            href="/readings/decoding"
             title="Control Parameter"
             class="absolute end-1 top-1 text-theme"
         >

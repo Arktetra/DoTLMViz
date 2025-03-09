@@ -19,7 +19,7 @@
 		navState = !navState;
 	};
 
-	let activeInd = $state(0);
+	let activeInd = $state(-1);
 </script>
 
 <button
