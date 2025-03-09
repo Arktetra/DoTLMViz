@@ -31,7 +31,7 @@
 		ostyle="bg-theme bottom-10 right-[50%] min-w-[60%] z-30 flex flex-row justify-center translate-x-[50%] !text-sm"
 		message="Recomendation: Please visit reading section first to understand the basic theories"
 	>
-		<a href={'/read'} class="ml-5 hover:underline">Visit Now</a>
+		<a href={'/readings'} class="ml-5 hover:underline">Visit Now</a>
 		<button onclick={() => (showRead = false)} class="ml-5 hover:scale-125">X</button>
 	</Message>
 {/if}
@@ -55,7 +55,7 @@
 		</TokensBlock>
 		<ExpandableDottedBlock
 			label="GPT-2 Small"
-			href="/read/gpt2-small"
+			href="/readings/overview"
 			titStyle="text-xl font-bold text-black"
 			borderSize={'1px'}
 			bind:expanded={global_state.viewMode}
