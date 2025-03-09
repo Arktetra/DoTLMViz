@@ -27,7 +27,7 @@ export const params = $state<{
 	top_p: number;
 }>({
 	temperature: 1.0,
-	top_k: 1,
+	top_k: 0,
 	top_p: 0.2
 });
 
