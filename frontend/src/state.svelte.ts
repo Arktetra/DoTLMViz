@@ -28,7 +28,7 @@ export const params = $state<{
 }>({
 	temperature: 1.0,
 	top_k: 0,
-	top_p: 0.2
+	top_p: 0.5
 });
 
 // All the global state here
