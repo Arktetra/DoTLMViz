@@ -99,7 +99,7 @@
         {#if topPorK}
             <ThemeInputSlider
                 label={'Top K'}
-                min={1}
+                min={0}
                 max={10}
                 step={1}
                 changeEventCb={kSliderCallback}
@@ -110,7 +110,7 @@
                 min={0}
                 max={1}
                 step={0.05}
-                value={0}
+                value={0.2}
                 changeEventCb={pSliderCallback}
             />
         {/if}
