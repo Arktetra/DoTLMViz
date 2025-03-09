@@ -8,6 +8,7 @@
 		label = '',
 		changeEventCb = null,
 		inpStyle = '',
+		value = null
 	} = $props();
 
 	let inpVal: number = $state(0);
@@ -20,7 +21,7 @@
 	const MAX_CHAR_SIZE = 6;
 
 	$effect(() => {
-		inpVal = step % 1 === 0 ? Math.floor((max - min) / 2 + min) : (max - min) / 2 + min;
+		inpVal = value == null ? (step % 1 === 0 ? Math.floor((max - min) / 2 + min) : (max - min) / 2 + min) : value;
 	});
 </script>
 
