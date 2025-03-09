@@ -13,7 +13,7 @@
 	>
 		{#if global_state.active_block == 11}
 			<BlockBase
-				href={'/read/layernorm'}
+				href={'readings/transformer-blocks#:~:text=the%20above%20figure.-,LayerNorm,-LayerNorm%20is%20a'}
 				clickEventCb={LNFinalCallback}
 			>
 				<span>LayerNorm</span>
@@ -23,7 +23,7 @@
 			label="Unembedding"
 			width={'12rem'}
 			height={'100%'}
-			href={'/read/unembedding'}
+			href={'/readings/language-modeling-head'}
 			clickEventCb={() => (activeComponent.name = 'Output Distribution')}
 		></BlockBase>
 	</DottedBlockBase>

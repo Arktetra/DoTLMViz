@@ -7,12 +7,12 @@
 	const _embeddings = [
 		{
 			label: 'Token Embedding',
-			href: '/read/token-embedding',
+			href: '/readings/input-encoding-component#:~:text=input%20positional%20embedding.-,Input%20Token%20Embedding,-A%20token%20embedding',
 			callback: embedCallback
 		},
 		{
 			label: 'Positional Embedding',
-			href: '/read/positional-embedding',
+			href: '/readings/input-encoding-component#:~:text=constructing%20contextual%20representations.-,Positional%20Embedding,-The%20positional%20embedding',
 			callback: posEmbedCallback
 		}
 	];

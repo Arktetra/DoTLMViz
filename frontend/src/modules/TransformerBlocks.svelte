@@ -17,11 +17,11 @@
 	const _transformerBlock = [
 		{
 			label: 'Attention Heads',
-			href: '/read/attention-head'
+			href: '/readings/transformer-blocks#:~:text=moves%20between%20positions.-,Attention%20Layer,-Each%20attention%20layer'
 		},
 		{
 			label: 'MLP',
-			href: '/read/mlp'
+			href: '/readings/transformer-blocks#:~:text=the%20above%20figure.-,MLP,-The%20MLP%20operates'
 		}
 	];
 
@@ -59,7 +59,7 @@
 				<BlockBase
 					width={'4rem'}
 					height={'4rem'}
-					href={'/read/layernorm'}
+					href={'readings/transformer-blocks#:~:text=the%20above%20figure.-,LayerNorm,-LayerNorm%20is%20a'}
 					clickEventCb={LN1Callback}
 				>
 					<span>LN1</span>
@@ -76,7 +76,7 @@
 				<BlockBase
 					width={'4rem'}
 					height={'4rem'}
-					href={'/read/layernorm'}
+					href={'readings/transformer-blocks#:~:text=the%20above%20figure.-,LayerNorm,-LayerNorm%20is%20a'}
 					clickEventCb={LN2Callback}
 				>
 					<span>LN2</span>

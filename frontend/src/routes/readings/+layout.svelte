@@ -1,16 +1,7 @@
 <script lang="ts">
 	const { children, data } = $props();
-	import { content } from '$lib/content';
 	import { ArrowRightOutline, WandMagicSparklesSolid } from 'flowbite-svelte-icons';
 	import { fly } from 'svelte/transition';
-
-	const getTitle = () => {
-		const temp: string[] = [];
-		Object.entries(content).forEach(([title, content]) => {
-			temp.push(title);
-		});
-		return temp;
-	};
 
 	let navState = $state<boolean>(true);
 
