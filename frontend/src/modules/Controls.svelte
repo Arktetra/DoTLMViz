@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { activeComponent, dimred, global_state } from "../state.svelte";
+    import { activeComponent, dimred, global_state, params } from "../state.svelte";
 	import {
 	embedCallback,
 		kSliderCallback,
@@ -99,9 +99,10 @@
         {#if topPorK}
             <ThemeInputSlider
                 label={'Top K'}
-                min={0}
+                min={1}
                 max={10}
                 step={1}
+                value={params.top_k}
                 changeEventCb={kSliderCallback}
             />
         {:else}
@@ -110,7 +111,7 @@
                 min={0}
                 max={1}
                 step={0.05}
-                value={0.2}
+                value={params.top_p}
                 changeEventCb={pSliderCallback}
             />
         {/if}
