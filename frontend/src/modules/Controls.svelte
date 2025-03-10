@@ -15,8 +15,6 @@
 
     import { QuestionCircleSolid } from "flowbite-svelte-icons";
 
-	// here true represent the top p and false mean k
-	let topPorK = $state(false);
 	const dimredMethod = ["PCA", "t-SNE"]
 
     function condEmbedCallback() {
@@ -82,7 +80,7 @@
         >
             Control Parameters
             <ThemeToggle
-                bind:state={topPorK}
+                bind:state={params.topPorK}
                 style="z-50 text-ti-s"
                 leftlabel="Top k"
                 rightlabel="Top p"
@@ -96,7 +94,7 @@
             changeEventCb={temperatureSliderCallback}
         />
         <hr class="my-1 border border-theme-w" />
-        {#if topPorK}
+        {#if params.topPorK}
             <ThemeInputSlider
                 label={'Top K'}
                 min={1}

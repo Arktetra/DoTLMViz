@@ -172,14 +172,12 @@ export const temperatureSliderCallback = async (v: number) => {
 
 export const kSliderCallback = async (v: number) => {
 	params.top_k = +v;
-	params.top_p = 0;
 
 	await outputCallback();
 };
 
 export const pSliderCallback = async (v: number) => {
 	params.top_p = +v;
-	params.top_k = 0;
 
 	await outputCallback();
 };
