@@ -82,8 +82,8 @@
             <ThemeToggle
                 bind:state={params.topPorK}
                 style="z-50 text-ti-s"
-                leftlabel="Top k"
-                rightlabel="Top p"
+                leftlabel="Top p"
+                rightlabel="Top k"
             />
         </span>
         <ThemeInputSlider
@@ -96,21 +96,21 @@
         <hr class="my-1 border border-theme-w" />
         {#if params.topPorK}
             <ThemeInputSlider
-                label={'Top K'}
-                min={1}
-                max={10}
-                step={1}
-                value={params.top_k}
-                changeEventCb={kSliderCallback}
-            />
-        {:else}
-            <ThemeInputSlider
                 label={'Top P'}
                 min={0}
                 max={1}
                 step={0.05}
                 value={params.top_p}
                 changeEventCb={pSliderCallback}
+            />
+        {:else}
+            <ThemeInputSlider
+                label={'Top K'}
+                min={1}
+                max={10}
+                step={1}
+                value={params.top_k}
+                changeEventCb={kSliderCallback}
             />
         {/if}
     </div>
