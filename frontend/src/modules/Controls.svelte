@@ -91,6 +91,7 @@
             min={-2}
             max={2}
             step={0.1}
+            value={params.temperature}
             changeEventCb={temperatureSliderCallback}
         />
         <hr class="my-1 border border-theme-w" />
