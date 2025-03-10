@@ -161,7 +161,7 @@ export const getNextToken = async () => {
 		p: params.top_p,
 		k: params.top_k
 	});
-	console.log(res['next_token']);
+	console.log("Result after generate", res);
 	global_state.next_token = res['next_token'];
 };
 
