@@ -25,10 +25,13 @@ export const params = $state<{
 	temperature: number;
 	top_k: number;
 	top_p: number;
+	topPorK: boolean
 }>({
 	temperature: 1.0,
 	top_k: 5,
-	top_p: 0.2
+	top_p: 0.2,
+	// here true represent the top p and false mean k
+	topPorK: false
 });
 
 // All the global state here

@@ -158,8 +158,8 @@ export const getDist = async () => {
 export const getNextToken = async () => {
 	const res = await _Axios.Post('/model/sample', {
 		temperature: params.temperature,
-		p: params.top_p,
-		k: params.top_k
+		p: params.topPorK ? params.top_p : 0,
+		k: params.topPorK ? 0 : params.top_k
 	});
 	console.log("Result after generate", res);
 	global_state.next_token = res['next_token'];
