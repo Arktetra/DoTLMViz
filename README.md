@@ -34,12 +34,20 @@ To check
 npm run lint
 ```
 
----
+### Backend
 
-Open a new terminal, go the root directory and run the backend:
+open a new terminal, go to the root directory and run the backend:
+
+**For Development:**
 
 ```bash
 flask --app backend run --debug
+```
+
+**For Production:**
+
+```bash
+flask --app backend run --no-reload
 ```
 
 ## Docs
