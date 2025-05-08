@@ -4,7 +4,10 @@ version = "0.1.0"
 dependencies = [
     "jaxtyping",
     "einops",
-    "transformers"
+    "transformers",
+    "flask",
+    "torch",
+    "scikit-learn"
 ]
 
 [project.optional-dependencies]
